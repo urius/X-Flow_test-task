@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Gold
 {
     [CreateAssetMenu(fileName = "GoldEntityInfo", menuName = "ScriptableObject/EntityInfo/GoldEntityInfo")]
-    internal class GoldEntityInfo : EntityInfoBase
+    internal class GoldEntityInfo : EntityInfoBase<int>
     {
         public const string EntityKey = "Gold";
 

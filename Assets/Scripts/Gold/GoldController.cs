@@ -11,15 +11,15 @@ namespace Gold
 
         public bool CanChangeGold(int deltaAmount)
         {
-            return _playerData.GetIntValue(_goldEntityKey) + deltaAmount >= 0;
+            return _playerData.GetEntityValue<GoldEntityInfo, int>() + deltaAmount >= 0;
         }
 
         public void ChangeGold(int deltaAmount)
         {
             if (CanChangeGold(deltaAmount))
             {
-                var currentValue = _playerData.GetIntValue(_goldEntityKey);
-                _playerData.SetIntValue(_goldEntityKey, currentValue + deltaAmount);
+                var currentValue = _playerData.GetEntityValue<GoldEntityInfo, int>();
+                _playerData.SetEntityValue<GoldEntityInfo, int>(_goldEntityKey, currentValue + deltaAmount);
             }
         }
     }

@@ -11,15 +11,15 @@ namespace Health
 
         public bool CanChangeHealth(int deltaAmount)
         {
-            return _playerData.GetIntValue(_healthEntityKey) + deltaAmount >= 0;
+            return _playerData.GetEntityValue<HealthEntityInfo, int>() + deltaAmount >= 0;
         }
 
         public void ChangeHealth(int deltaAmount)
         {
             if (CanChangeHealth(deltaAmount))
             {
-                var currentValue = _playerData.GetIntValue(_healthEntityKey);
-                _playerData.SetIntValue(_healthEntityKey, currentValue + deltaAmount);
+                var currentValue = _playerData.GetEntityValue<HealthEntityInfo, int>();
+                _playerData.SetEntityValue<HealthEntityInfo, int>(_healthEntityKey, currentValue + deltaAmount);
             }
         }
     }

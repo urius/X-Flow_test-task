@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace Core
 {
+    public abstract class EntityInfoBase<TValue> : EntityInfoBase
+    {
+    }
+    
     public abstract class EntityInfoBase : ScriptableObject
     {
         [SerializeField] private string _name;

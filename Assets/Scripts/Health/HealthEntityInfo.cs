@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Health
 {
     [CreateAssetMenu(fileName = "HealthEntityInfo", menuName = "ScriptableObject/EntityInfo/HealthEntityInfo")]
-    internal class HealthEntityInfo : EntityInfoBase
+    internal class HealthEntityInfo : EntityInfoBase<int>
     {
         public const string EntityKey = "Health";
 

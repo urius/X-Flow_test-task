@@ -8,44 +8,48 @@ namespace Core
         public event Action<string> ValueChanged;
         
         public static readonly PlayerData Instance = new();
+        
+        private readonly Dictionary<Type, string> _entityKeyByEntityTypeDict = new();
+        private readonly Dictionary<string, ValueHolder> _valueHoldersByEntityKey = new();
 
-        private readonly Dictionary<string, int> _intValuesByEntityKey = new();
-        private readonly Dictionary<string, string> _stringValuesByEntityKey = new();
-
-        public int GetIntValue(string entityKey)
+        public TValue GetEntityValue<TEntity, TValue>() 
+            where TEntity : EntityInfoBase<TValue>
         {
-            _intValuesByEntityKey.TryGetValue(entityKey, out var result);
-
-            return result;
+            if (_entityKeyByEntityTypeDict.TryGetValue(typeof(TEntity), out var entityKey)
+                && _valueHoldersByEntityKey.TryGetValue(entityKey, out var valueHolder))
+            {
+                return ((ValueHolder<TValue>)valueHolder).Value;
+            }
+            
+            return default;
         }
         
-        public void SetIntValue(string entityKey, int value)
+        public void SetEntityValue<TEntity, TValue>(string entityKey, TValue value) 
+            where TEntity : EntityInfoBase<TValue>
         {
-            _intValuesByEntityKey[entityKey] = value;
+            var entityType = typeof(TEntity);
+
+            _entityKeyByEntityTypeDict.TryAdd(entityType, entityKey);
+
+            if (_valueHoldersByEntityKey.TryGetValue(entityKey, out var valueHolder) == false)
+            {
+                valueHolder = new ValueHolder<TValue>();
+                _valueHoldersByEntityKey[entityKey] = valueHolder;
+            }
+            
+            ((ValueHolder<TValue>)valueHolder).Value = value;
             
             ValueChanged?.Invoke(entityKey);
         }
         
         public string GetStrValue(string entityKey)
         {
-            if (_stringValuesByEntityKey.TryGetValue(entityKey, out var result))
+            if (_valueHoldersByEntityKey.TryGetValue(entityKey, out var result))
             {
-                return result;
-            }
-            
-            if (_intValuesByEntityKey.TryGetValue(entityKey, out var resultInt))
-            {
-                return resultInt.ToString();
+                return result.GetStringValue();
             }
 
             return string.Empty;
-        }
-        
-        public void SetStrValue(string entityKey, string value)
-        {
-            _stringValuesByEntityKey[entityKey] = value;
-            
-            ValueChanged?.Invoke(entityKey);
         }
     }
 }
