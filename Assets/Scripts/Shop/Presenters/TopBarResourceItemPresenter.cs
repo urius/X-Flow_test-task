@@ -29,9 +29,7 @@ namespace Shop.Presenters
 
         private void UpdateResourceValue()
         {
-            var entityInfo = _itemSetting.DisplayEntityInfo;
-            var value = _playerData.GetStrValue(entityInfo.Key);
-            _resourceView.SetResourceValue(entityInfo.FormatValue(value));
+            _resourceView.SetResourceValue(_itemSetting.DisplayEntityInfo.GetStringValue());
         }
 
         private void Subscribe()

@@ -10,9 +10,8 @@ namespace Core
     {
         [SerializeField] private string _name;
 
-        public abstract bool IsUnique { get; }
         public abstract string Key { get; }
-        public abstract string FormatValue(string valueStr);
+        public abstract string GetStringValue();
 
         public string EntityName => _name;
     }

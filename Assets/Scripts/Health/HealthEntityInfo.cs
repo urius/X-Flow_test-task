@@ -8,12 +8,11 @@ namespace Health
     {
         public const string EntityKey = "Health";
 
-        public override bool IsUnique => false;
         public override string Key => EntityKey;
         
-        public override string FormatValue(string valueStr)
+        public override string GetStringValue()
         {
-            return string.IsNullOrEmpty(valueStr) ? "0" : valueStr;
+            return PlayerData.Instance.GetEntityValue<HealthEntityInfo, int>().ToString();
         }
     }
 }

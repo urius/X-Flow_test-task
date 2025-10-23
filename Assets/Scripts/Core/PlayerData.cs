@@ -41,15 +41,5 @@ namespace Core
             
             ValueChanged?.Invoke(entityKey);
         }
-        
-        public string GetStrValue(string entityKey)
-        {
-            if (_valueHoldersByEntityKey.TryGetValue(entityKey, out var result))
-            {
-                return result.GetStringValue();
-            }
-
-            return string.Empty;
-        }
     }
 }

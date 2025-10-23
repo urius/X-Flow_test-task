@@ -334,6 +334,8 @@ MonoBehaviour:
     _buttonAction: {fileID: 11400000, guid: 6661682cfba2849d59b177671e30f471, type: 2}
   - _displayEntityInfo: {fileID: 11400000, guid: 692dcdda58e7e44ac979ffc47f0815ae, type: 2}
     _buttonAction: {fileID: 11400000, guid: 56c4731bf5e82492b81cfd4ed1dbc81d, type: 2}
+  - _displayEntityInfo: {fileID: 11400000, guid: 56e81a80f9c9448b68844a6fc5962145, type: 2}
+    _buttonAction: {fileID: 11400000, guid: 5c22f7b2839f244cdbf81034ccb412e1, type: 2}
   _itemPrefab: {fileID: 2552376198958171994, guid: 5f46d8dd8318740e08d1f4791b9b2176, type: 3}
 --- !u!114 &539135313
 MonoBehaviour:

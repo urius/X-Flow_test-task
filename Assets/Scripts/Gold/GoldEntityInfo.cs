@@ -8,12 +8,11 @@ namespace Gold
     {
         public const string EntityKey = "Gold";
 
-        public override bool IsUnique => false;
         public override string Key => EntityKey;
         
-        public override string FormatValue(string valueStr)
+        public override string GetStringValue()
         {
-            return string.IsNullOrEmpty(valueStr) ? "0" : valueStr;
+            return PlayerData.Instance.GetEntityValue<GoldEntityInfo, int>().ToString();
         }
     }
 }
