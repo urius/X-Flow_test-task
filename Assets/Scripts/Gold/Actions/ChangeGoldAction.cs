@@ -1,7 +1,7 @@
 using Core;
 using UnityEngine;
 
-namespace Gold
+namespace Gold.Actions
 {
     [CreateAssetMenu(fileName = "ChangeGoldAction", menuName = "ScriptableObject/Actions/ChangeGoldAction")]
     internal class ChangeGoldAction : EntityActionBase

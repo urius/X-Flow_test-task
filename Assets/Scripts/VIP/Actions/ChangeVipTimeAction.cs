@@ -1,7 +1,7 @@
 using Core;
 using UnityEngine;
 
-namespace VIP
+namespace VIP.Actions
 {
     [CreateAssetMenu(fileName = "ChangeVipTimeAction", menuName = "ScriptableObject/Actions/ChangeVipTimeAction")]
     public class ChangeVipTimeAction : EntityActionBase
