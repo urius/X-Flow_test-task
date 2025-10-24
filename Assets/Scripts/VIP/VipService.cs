@@ -3,9 +3,9 @@ using Core;
 
 namespace VIP
 {
-    public class VipController
+    public class VipService
     {
-        public static readonly VipController Instance = new();
+        public static readonly VipService Instance = new();
 
         public bool CanChangeVipTime(int deltaSeconds)
         {

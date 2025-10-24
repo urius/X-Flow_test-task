@@ -10,12 +10,12 @@ namespace Gold
 
         public override bool CanPerform()
         {
-            return GoldController.Instance.CanChangeGold(_amount);
+            return GoldService.Instance.CanChangeGold(_amount);
         }
 
         public override void Perform()
         {
-            GoldController.Instance.ChangeGold(_amount);
+            GoldService.Instance.ChangeGold(_amount);
         }
     }
 }

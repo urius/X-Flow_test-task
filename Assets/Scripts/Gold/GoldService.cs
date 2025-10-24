@@ -2,9 +2,9 @@ using Core;
 
 namespace Gold
 {
-    internal class GoldController
+    internal class GoldService
     {
-        public static readonly GoldController Instance = new();
+        public static readonly GoldService Instance = new();
         
         private readonly PlayerData _playerData = PlayerData.Instance;
         private readonly string _goldEntityKey = GoldEntityInfo.EntityKey;

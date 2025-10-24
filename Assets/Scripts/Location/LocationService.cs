@@ -4,9 +4,9 @@ using Core;
 
 namespace Location
 {
-    internal class LocationController
+    internal class LocationService
     {
-        public static readonly LocationController Instance = new();
+        public static readonly LocationService Instance = new();
         private static IReadOnlyList<LocationValue> LocationValues => (LocationValue[])Enum.GetValues(typeof(LocationValue));
 
         public bool CanChangeLocation(int deltaAmount)

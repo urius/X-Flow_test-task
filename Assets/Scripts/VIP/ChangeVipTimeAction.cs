@@ -10,12 +10,12 @@ namespace VIP
         
         public override bool CanPerform()
         {
-            return VipController.Instance.CanChangeVipTime(_deltaSeconds);
+            return VipService.Instance.CanChangeVipTime(_deltaSeconds);
         }
 
         public override void Perform()
         {
-            VipController.Instance.ChangeVipTime(_deltaSeconds);
+            VipService.Instance.ChangeVipTime(_deltaSeconds);
         }
     }
 }

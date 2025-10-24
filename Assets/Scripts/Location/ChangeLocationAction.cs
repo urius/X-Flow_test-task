@@ -10,12 +10,12 @@ namespace Location
         
         public override bool CanPerform()
         {
-            return LocationController.Instance.CanChangeLocation(_deltaIndex);
+            return LocationService.Instance.CanChangeLocation(_deltaIndex);
         }
 
         public override void Perform()
         {
-            LocationController.Instance.ChangeLocation(_deltaIndex);
+            LocationService.Instance.ChangeLocation(_deltaIndex);
         }
     }
 }
