@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efa4f730772404396e68a3c7cb16fdf, type: 3}
+  m_Name: ShopBundle_lot_gold_for_hp
+  m_EditorClassIdentifier: 
+  _title: "\u041C\u043D\u043E\u0433\u043E \u0437\u043E\u043B\u043E\u0442\u0430 \u0437\u0430
+    HP"
+  _actions:
+  - {fileID: 11400000, guid: c6fa48991538b4b63a882d8b1b2ca734, type: 2}
+  - {fileID: 11400000, guid: 21cdf34eb192a496eb0574e1fda3915c, type: 2}
