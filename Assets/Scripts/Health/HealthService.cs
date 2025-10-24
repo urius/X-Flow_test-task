@@ -9,44 +9,44 @@ namespace Health
         
         private readonly PlayerData _playerData = PlayerData.Instance;
 
-        public bool CanChangeHealth(int deltaAmount)
+        public bool CanChangeHealth(HealthEntityInfo entityInfo, int deltaAmount)
         {
-            return GetCurrentHp() + deltaAmount > 0;
+            return GetCurrentHp(entityInfo) + deltaAmount > 0;
         }
 
-        public void ChangeHealth(int deltaAmount)
+        public void ChangeHealth(HealthEntityInfo entityInfo, int deltaAmount)
         {
-            if (CanChangeHealth(deltaAmount))
+            if (CanChangeHealth(entityInfo, deltaAmount))
             {
-                var currentValue = GetCurrentHp();
-                _playerData.SetEntityValue<HealthEntityInfo, int>(currentValue + deltaAmount);
+                var currentValue = GetCurrentHp(entityInfo);
+                _playerData.SetEntityValue(entityInfo, currentValue + deltaAmount);
             }
         }
 
-        public bool CanChangeHealthPercent(int deltaPercent)
+        public bool CanChangeHealthPercent(HealthEntityInfo entityInfo, int deltaPercent)
         {
-            var currentHp = GetCurrentHp();
+            var currentHp = GetCurrentHp(entityInfo);
             var newHp = GetChangedByPercentHp(currentHp, deltaPercent);
 
             return newHp > 0 && newHp != currentHp;
         }
 
-        public void ChangeHealthPercent(int deltaPercent)
+        public void ChangeHealthPercent(HealthEntityInfo entityInfo, int deltaPercent)
         {
-            if (CanChangeHealthPercent(deltaPercent))
+            if (CanChangeHealthPercent(entityInfo, deltaPercent))
             {
-                var currentHp = GetCurrentHp();
+                var currentHp = GetCurrentHp(entityInfo);
                 var newHp = GetChangedByPercentHp(currentHp, deltaPercent);
                 
-                _playerData.SetEntityValue<HealthEntityInfo, int>(newHp);
+                _playerData.SetEntityValue(entityInfo, newHp);
             }
         }
 
-        public int GetCurrentHp()
+        public int GetCurrentHp(HealthEntityInfo entityInfo)
         {
             const int defaultHp = 100;
             
-            return _playerData.GetEntityValue<HealthEntityInfo, int>(defaultHp);
+            return _playerData.GetEntityValue(entityInfo, defaultHp);
         }
 
         private static int GetChangedByPercentHp(int initialHp, int deltaPercent)

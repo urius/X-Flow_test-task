@@ -5,44 +5,40 @@ namespace Core
 {
     public class PlayerData
     {
-        public event Action<Type> ValueChanged;
+        public event Action<string> ValueChanged;
         
         public static readonly PlayerData Instance = new();
         
-        private readonly Dictionary<Type, ValueHolder> _valueHoldersByEntityKey = new();
-
-        public TValue GetEntityValue<TEntity, TValue>(TValue defaultValue = default) 
+        private readonly Dictionary<string, ValueHolder> _valueHoldersByEntityKey = new();
+        
+        public TValue GetEntityValue<TEntity, TValue>(TEntity entity, TValue defaultValue = default) 
             where TEntity : EntityInfoBase<TValue>
         {
-            var entityType = typeof(TEntity);
-            
-            if (_valueHoldersByEntityKey.TryGetValue(entityType, out var valueHolder))
+            if (_valueHoldersByEntityKey.TryGetValue(entity.Key, out var valueHolder))
             {
                 return ((ValueHolder<TValue>)valueHolder).Value;
             }
 
             valueHolder = new ValueHolder<TValue>(defaultValue);
-            _valueHoldersByEntityKey[entityType] = valueHolder;
+            _valueHoldersByEntityKey[entity.Key] = valueHolder;
                 
             return defaultValue;
         }
         
-        public void SetEntityValue<TEntity, TValue>(TValue value) 
+        public void SetEntityValue<TEntity, TValue>(TEntity entity, TValue value) 
             where TEntity : EntityInfoBase<TValue>
         {
-            var entityType = typeof(TEntity);
-
-            if (_valueHoldersByEntityKey.TryGetValue(entityType, out var valueHolder))
+            if (_valueHoldersByEntityKey.TryGetValue(entity.Key, out var valueHolder))
             {
                 ((ValueHolder<TValue>)valueHolder).Value = value;
             }
             else
             {
                 valueHolder = new ValueHolder<TValue>(value);
-                _valueHoldersByEntityKey[entityType] = valueHolder;
+                _valueHoldersByEntityKey[entity.Key] = valueHolder;
             }
 
-            ValueChanged?.Invoke(entityType);
+            ValueChanged?.Invoke(entity.Key);
         }
     }
 }

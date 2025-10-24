@@ -4,18 +4,18 @@ using UnityEngine;
 namespace Health.Actions
 {
     [CreateAssetMenu(fileName = "ChangeHealthAction", menuName = "ScriptableObject/Actions/ChangeHealthAction")]
-    internal class ChangeHealthAction : EntityActionBase
+    internal class ChangeHealthAction : EntityActionBase<HealthEntityInfo>
     {
         [SerializeField] private int _amount;
 
         public override bool CanPerform()
         {
-            return HealthService.Instance.CanChangeHealth(_amount);
+            return HealthService.Instance.CanChangeHealth(EntityInfo, _amount);
         }
 
         public override void Perform()
         {
-            HealthService.Instance.ChangeHealth(_amount);
+            HealthService.Instance.ChangeHealth(EntityInfo, _amount);
         }
     }
 }

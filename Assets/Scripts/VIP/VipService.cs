@@ -7,25 +7,25 @@ namespace VIP
     {
         public static readonly VipService Instance = new();
 
-        public bool CanChangeVipTime(int deltaSeconds)
+        public bool CanChangeVipTime(VipEntityInfo entityInfo, int deltaSeconds)
         {
-            return GetCurrentVipTime().TotalSeconds + deltaSeconds >= 0;
+            return GetCurrentVipTime(entityInfo).TotalSeconds + deltaSeconds >= 0;
         }
 
-        public void ChangeVipTime(int deltaSeconds)
+        public void ChangeVipTime(VipEntityInfo entityInfo, int deltaSeconds)
         {
-            if (CanChangeVipTime(deltaSeconds))
+            if (CanChangeVipTime(entityInfo, deltaSeconds))
             {
-                var currentVipTime = GetCurrentVipTime();
+                var currentVipTime = GetCurrentVipTime(entityInfo);
                 var newTime = TimeSpan.FromSeconds(currentVipTime.TotalSeconds + deltaSeconds);
                 
-                PlayerData.Instance.SetEntityValue<VipEntityInfo, TimeSpan>(newTime);
+                PlayerData.Instance.SetEntityValue(entityInfo, newTime);
             }
         }
 
-        public TimeSpan GetCurrentVipTime()
+        public TimeSpan GetCurrentVipTime(VipEntityInfo entityInfo)
         {
-            return PlayerData.Instance.GetEntityValue<VipEntityInfo, TimeSpan>();
+            return PlayerData.Instance.GetEntityValue<VipEntityInfo, TimeSpan>(entityInfo);
         }
     }
 }

@@ -4,16 +4,16 @@ using UnityEngine;
 namespace Location.Actions
 {
     [CreateAssetMenu(fileName = "ResetLocationToDefaultAction", menuName = "ScriptableObject/Actions/ResetLocationToDefaultAction")]
-    public class ResetLocationToDefaultAction : EntityActionBase
+    internal class ResetLocationToDefaultAction : EntityActionBase<LocationEntityInfo>
     {
         public override bool CanPerform()
         {
-            return LocationService.Instance.CanResetToDefaultLocation();
+            return LocationService.Instance.CanResetToDefaultLocation(EntityInfo);
         }
 
         public override void Perform()
         {
-            LocationService.Instance.ResetToDefaultLocation();
+            LocationService.Instance.ResetToDefaultLocation(EntityInfo);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Gold
         
         public override string GetStringValue()
         {
-            return GoldService.Instance.GetCurrentGold().ToString();
+            return GoldService.Instance.GetCurrentGold(this).ToString();
         }
     }
 }

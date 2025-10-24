@@ -1,4 +1,3 @@
-using System.Linq;
 using Core;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ namespace Location
         
         public override string GetStringValue()
         {
-            return LocationService.Instance.GetCurrentLocation();
+            return LocationService.Instance.GetCurrentLocation(this);
         }
     }
 }

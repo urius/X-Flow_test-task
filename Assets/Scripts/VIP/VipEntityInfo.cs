@@ -13,7 +13,7 @@ namespace VIP
         
         public override string GetStringValue()
         {
-            var value = VipService.Instance.GetCurrentVipTime();
+            var value = VipService.Instance.GetCurrentVipTime(this);
             
             return $"{value.TotalSeconds} сек";
         }
