@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Shop.Bundles;
-using Shop.Dispatcher;
+using Shop.Model;
 
 namespace Shop.Services
 {
@@ -11,13 +11,13 @@ namespace Shop.Services
 
         public async Task ProcessBuyBundle(ShopBundle bundleData)
         {
-            ShopDispatcher.Instance.DispatchBuyBundleStarted(bundleData);
+            ShopStateModel.Instance.SetBundleProcessing(bundleData);
             
             await Task.Delay(new TimeSpan(hours: 0, minutes: 0, seconds: 3));
 
             PerformBundleActions(bundleData);
             
-            ShopDispatcher.Instance.DispatchBuyBundleFinished(bundleData);
+            ShopStateModel.Instance.SetBundleProcessingFinished();
         }
 
         private static void PerformBundleActions(ShopBundle bundleData)

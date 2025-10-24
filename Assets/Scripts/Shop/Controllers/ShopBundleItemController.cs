@@ -1,7 +1,7 @@
 using Core;
 using Shop.Bundles;
-using Shop.Dispatcher;
 using Shop.Managers;
+using Shop.Model;
 using Shop.Services;
 using Shop.Views;
 
@@ -12,11 +12,9 @@ namespace Shop.Controllers
         protected readonly IBundleItemView BundleView;
         protected readonly ShopBundle BundleData;
         
-        private readonly ShopDispatcher _shopDispatcher = ShopDispatcher.Instance;
+        private readonly ShopStateModel _shopStateModel = ShopStateModel.Instance;
         private readonly PlayerData _playerData = PlayerData.Instance;
         
-        private bool _blockUpdateButtonState;
-
         public ShopBundleItemController(IBundleItemView bundleView, ShopBundle bundleData)
         {
             BundleView = bundleView;
@@ -37,15 +35,14 @@ namespace Shop.Controllers
         protected virtual void SetupView()
         {
             BundleView.SetBundleText(BundleData.Title);
-            UpdateButtonState();
+            UpdateBuyButtonState();
         }
 
         private void Subscribe()
         {
             BundleView.BuyButtonClicked += OnBuyButtonClicked;
             BundleView.InfoButtonClicked += OnInfoButtonClicked;
-            _shopDispatcher.BuyBundleStarted += OnBuyBundleStarted;
-            _shopDispatcher.BuyBundleFinished += BuyBundleFinished;
+            _shopStateModel.ProcessBundleStateChanged += OnProcessBundleStateChanged;
             _playerData.ValueChanged += OnPlayerDataValueChanged;
         }
 
@@ -53,34 +50,18 @@ namespace Shop.Controllers
         {
             BundleView.BuyButtonClicked -= OnBuyButtonClicked;
             BundleView.InfoButtonClicked -= OnInfoButtonClicked;
-            _shopDispatcher.BuyBundleStarted -= OnBuyBundleStarted;
-            _shopDispatcher.BuyBundleFinished -= BuyBundleFinished;
+            _shopStateModel.ProcessBundleStateChanged -= OnProcessBundleStateChanged;
             _playerData.ValueChanged -= OnPlayerDataValueChanged;
         }
 
-        private void OnBuyBundleStarted(ShopBundle bundle)
+        private void OnProcessBundleStateChanged()
         {
-            if (BundleData == bundle)
-            {
-                BundleView.SetBuyButtonProcessingMode();
-            }
-            else
-            {
-                BundleView.SetBuyButtonNotAvailableMode();
-            }
-
-            _blockUpdateButtonState = true;
-        }
-
-        private void BuyBundleFinished(ShopBundle _)
-        {
-            _blockUpdateButtonState = false;
-            UpdateButtonState();
+            UpdateBuyButtonState();
         }
 
         private void OnPlayerDataValueChanged(string key)
         {
-            UpdateButtonState();
+            UpdateBuyButtonState();
         }
 
         private async void OnBuyButtonClicked()
@@ -93,11 +74,22 @@ namespace Shop.Controllers
             SceneTransitionManager.Instance.SwitchToViewBundleScene(BundleData);
         }
 
-        private void UpdateButtonState()
+        private void UpdateBuyButtonState()
         {
-            if (_blockUpdateButtonState) return;
+            var currentBundleProcessing = _shopStateModel.CurrentProcessingBundle;
             
-            if (BundleData.CanBuy())
+            if (currentBundleProcessing != null)
+            {
+                if (currentBundleProcessing == BundleData)
+                {
+                    BundleView.SetBuyButtonProcessingMode();
+                }
+                else
+                {
+                    BundleView.SetBuyButtonNotAvailableMode();
+                }
+            }
+            else if (BundleData.CanBuy())
             {
                 BundleView.SetBuyButtonAvailableMode();
             }
