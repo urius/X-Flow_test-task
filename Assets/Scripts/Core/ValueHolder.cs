@@ -4,6 +4,11 @@ namespace Core
     {
         public TValue Value;
 
+        public ValueHolder(TValue defaultValue)
+        {
+            Value = defaultValue;
+        }
+
         public override string GetStringValue()
         {
             return Value.ToString();

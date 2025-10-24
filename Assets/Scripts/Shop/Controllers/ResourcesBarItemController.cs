@@ -48,9 +48,9 @@ namespace Shop.Controllers
             _playerData.ValueChanged -= OnValueChanged;
         }
 
-        private void OnValueChanged(string entityKey)
+        private void OnValueChanged(Type entityType)
         {
-            if (entityKey == _itemSetting.DisplayEntityInfo.Key)
+            if (entityType == _itemSetting.DisplayEntityInfo.CashedType)
             {
                 UpdateResourceValue();
             }

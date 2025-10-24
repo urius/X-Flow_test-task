@@ -1,3 +1,4 @@
+using System;
 using Core;
 using Shop.Bundles;
 using Shop.Managers;
@@ -59,7 +60,7 @@ namespace Shop.Controllers
             UpdateBuyButtonState();
         }
 
-        private void OnPlayerDataValueChanged(string key)
+        private void OnPlayerDataValueChanged(Type _)
         {
             UpdateBuyButtonState();
         }

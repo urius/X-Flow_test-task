@@ -8,25 +8,24 @@ namespace Health
         public static readonly HealthService Instance = new();
         
         private readonly PlayerData _playerData = PlayerData.Instance;
-        private readonly string _healthEntityKey = HealthEntityInfo.EntityKey;
 
         public bool CanChangeHealth(int deltaAmount)
         {
-            return _playerData.GetEntityValue<HealthEntityInfo, int>() + deltaAmount > 0;
+            return GetCurrentHp() + deltaAmount > 0;
         }
 
         public void ChangeHealth(int deltaAmount)
         {
             if (CanChangeHealth(deltaAmount))
             {
-                var currentValue = _playerData.GetEntityValue<HealthEntityInfo, int>();
-                _playerData.SetEntityValue<HealthEntityInfo, int>(_healthEntityKey, currentValue + deltaAmount);
+                var currentValue = GetCurrentHp();
+                _playerData.SetEntityValue<HealthEntityInfo, int>(currentValue + deltaAmount);
             }
         }
 
         public bool CanChangeHealthPercent(int deltaPercent)
         {
-            var currentHp = _playerData.GetEntityValue<HealthEntityInfo, int>();
+            var currentHp = GetCurrentHp();
             var newHp = GetChangedByPercentHp(currentHp, deltaPercent);
 
             return newHp > 0 && newHp != currentHp;
@@ -36,11 +35,18 @@ namespace Health
         {
             if (CanChangeHealthPercent(deltaPercent))
             {
-                var currentHp = _playerData.GetEntityValue<HealthEntityInfo, int>();
+                var currentHp = GetCurrentHp();
                 var newHp = GetChangedByPercentHp(currentHp, deltaPercent);
                 
-                _playerData.SetEntityValue<HealthEntityInfo, int>(_healthEntityKey, newHp);
+                _playerData.SetEntityValue<HealthEntityInfo, int>(newHp);
             }
+        }
+
+        public int GetCurrentHp()
+        {
+            const int defaultHp = 100;
+            
+            return _playerData.GetEntityValue<HealthEntityInfo, int>(defaultHp);
         }
 
         private static int GetChangedByPercentHp(int initialHp, int deltaPercent)

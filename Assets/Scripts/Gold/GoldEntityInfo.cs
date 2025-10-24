@@ -12,7 +12,7 @@ namespace Gold
         
         public override string GetStringValue()
         {
-            return PlayerData.Instance.GetEntityValue<GoldEntityInfo, int>().ToString();
+            return GoldService.Instance.GetCurrentGold().ToString();
         }
     }
 }

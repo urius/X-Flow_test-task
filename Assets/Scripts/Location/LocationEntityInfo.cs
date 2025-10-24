@@ -13,10 +13,7 @@ namespace Location
         
         public override string GetStringValue()
         {
-            const string unknownLocation = "?";
-            
-            var locationValue = PlayerData.Instance.GetEntityValue<LocationEntityInfo, string>();
-            return locationValue ?? unknownLocation;
+            return LocationService.Instance.GetCurrentLocation();
         }
     }
 }

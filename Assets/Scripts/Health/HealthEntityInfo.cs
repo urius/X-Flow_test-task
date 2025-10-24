@@ -12,7 +12,7 @@ namespace Health
         
         public override string GetStringValue()
         {
-            return PlayerData.Instance.GetEntityValue<HealthEntityInfo, int>().ToString();
+            return HealthService.Instance.GetCurrentHp().ToString();
         }
     }
 }

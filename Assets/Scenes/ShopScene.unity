@@ -537,7 +537,7 @@ MonoBehaviour:
   - _displayEntityInfo: {fileID: 11400000, guid: 692dcdda58e7e44ac979ffc47f0815ae, type: 2}
     _buttonAction: {fileID: 11400000, guid: 56c4731bf5e82492b81cfd4ed1dbc81d, type: 2}
   - _displayEntityInfo: {fileID: 11400000, guid: 56e81a80f9c9448b68844a6fc5962145, type: 2}
-    _buttonAction: {fileID: 11400000, guid: 3e563ca3957224bd3857a5bd5f745736, type: 2}
+    _buttonAction: {fileID: 11400000, guid: 597b39517d9cb4ce5b54da2f3e473829, type: 2}
   - _displayEntityInfo: {fileID: 11400000, guid: 134f344f4b7d3498486e993058ab3987, type: 2}
     _buttonAction: {fileID: 11400000, guid: b48756b5fe9ff4de583e2b521245666e, type: 2}
   _resourcesBarView: {fileID: 539135314}
@@ -702,6 +702,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4e7e6b60d76bf45c89f038031c81455f, type: 2}
   - {fileID: 11400000, guid: 6db24ffc945634c699ca2cba3ed975cc, type: 2}
   - {fileID: 11400000, guid: 355c9a5120d0b467090584ef37e9e46e, type: 2}
+  - {fileID: 11400000, guid: 271f189a0e7c8456dbaafdf08bdc8363, type: 2}
 --- !u!1 &618283037
 GameObject:
   m_ObjectHideFlags: 0
