@@ -1,7 +1,7 @@
 using Core;
 using UnityEngine;
 
-namespace Health
+namespace Health.Actions
 {
     [CreateAssetMenu(fileName = "ChangeHealthAction", menuName = "ScriptableObject/Actions/ChangeHealthAction")]
     internal class ChangeHealthAction : EntityActionBase
@@ -10,12 +10,12 @@ namespace Health
 
         public override bool CanPerform()
         {
-            return HealthController.Instance.CanChangeHealth(_amount);
+            return HealthService.Instance.CanChangeHealth(_amount);
         }
 
         public override void Perform()
         {
-            HealthController.Instance.ChangeHealth(_amount);
+            HealthService.Instance.ChangeHealth(_amount);
         }
     }
 }
