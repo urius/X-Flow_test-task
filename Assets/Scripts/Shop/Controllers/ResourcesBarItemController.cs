@@ -1,28 +1,32 @@
 using System;
 using Core;
+using Shop.ControllersInitializers;
 using Shop.Views;
 
-namespace Shop.Presenters
+namespace Shop.Controllers
 {
-    internal class TopBarResourceItemPresenter : IDisposable
+    internal class ResourcesBarItemController : IController
     {
         private readonly PlayerData _playerData = PlayerData.Instance;
         
-        private ResourceView _resourceView;
-        private TopBarCanvasPresenterItemSetting _itemSetting;
+        private readonly IResourceView _resourceView;
+        private readonly ResourcesBarItemSetting _itemSetting;
 
-        public void Present(ResourceView resourceView, TopBarCanvasPresenterItemSetting itemSetting)
+        public ResourcesBarItemController(IResourceView resourceView, ResourcesBarItemSetting itemSetting)
         {
             _resourceView = resourceView;
             _itemSetting = itemSetting;
-            
+        }
+
+        public void Start()
+        {
             _resourceView.SetResourceName(_itemSetting.DisplayEntityInfo.EntityName);
             UpdateResourceValue();
 
             Subscribe();
         }
 
-        public void Dispose()
+        public void Stop()
         {
             Unsubscribe();
         }

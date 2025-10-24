@@ -2,10 +2,10 @@ using System;
 using Core;
 using UnityEngine;
 
-namespace Shop.Presenters
+namespace Shop.ControllersInitializers
 {
     [Serializable]
-    internal class TopBarCanvasPresenterItemSetting
+    internal class ResourcesBarItemSetting
     {
         [SerializeField] private EntityInfoBase _displayEntityInfo;
         [SerializeField] private EntityActionBase _buttonAction;

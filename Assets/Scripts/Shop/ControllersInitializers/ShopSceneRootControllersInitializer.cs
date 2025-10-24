@@ -11,8 +11,8 @@ namespace Shop.ControllersInitializers
         [SerializeField] private ShopBundle[] _bundlesData;
         
         private ShopSceneRootController _rootController;
-        
-        private void Start()
+
+        private void Awake()
         {
             _rootController = new ShopSceneRootController(_bundlesCanvasView, _bundlesData);
             _rootController.Start();
@@ -21,6 +21,7 @@ namespace Shop.ControllersInitializers
         private void OnDestroy()
         {
             _rootController.Stop();
+            _rootController = null;
         }
     }
 }

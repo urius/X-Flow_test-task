@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Shop.Views
 {
-    internal class ResourceView : MonoBehaviour
+    internal class ResourceView : MonoBehaviour, IResourceView
     {
         public event Action AddButtonClicked;
         

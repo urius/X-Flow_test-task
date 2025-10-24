@@ -424,13 +424,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 539135308}
+  - component: {fileID: 539135312}
+  - component: {fileID: 539135314}
   - component: {fileID: 539135311}
   - component: {fileID: 539135310}
   - component: {fileID: 539135309}
-  - component: {fileID: 539135312}
   - component: {fileID: 539135313}
   m_Layer: 5
-  m_Name: Top Bar Canvas
+  m_Name: Resources Bar Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -539,7 +540,7 @@ MonoBehaviour:
     _buttonAction: {fileID: 11400000, guid: 5c22f7b2839f244cdbf81034ccb412e1, type: 2}
   - _displayEntityInfo: {fileID: 11400000, guid: 134f344f4b7d3498486e993058ab3987, type: 2}
     _buttonAction: {fileID: 11400000, guid: b48756b5fe9ff4de583e2b521245666e, type: 2}
-  _itemPrefab: {fileID: 2552376198958171994, guid: 5f46d8dd8318740e08d1f4791b9b2176, type: 3}
+  _resourcesBarView: {fileID: 539135314}
 --- !u!114 &539135313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,6 +567,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &539135314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539135307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba32d7fe77854f13b6ed7754ca2c7e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemPrefab: {fileID: 2552376198958171994, guid: 5f46d8dd8318740e08d1f4791b9b2176, type: 3}
 --- !u!1 &555882678
 GameObject:
   m_ObjectHideFlags: 0
