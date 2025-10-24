@@ -1,12 +1,12 @@
 using Core;
 using UnityEngine;
 
-namespace Location
+namespace Location.Actions
 {
-    [CreateAssetMenu(fileName = "ChangeLocationToAction", menuName = "ScriptableObject/Actions/ChangeLocationActionTo")]
+    [CreateAssetMenu(fileName = "ChangeLocationToAction", menuName = "ScriptableObject/Actions/ChangeLocationToAction")]
     public class ChangeLocationToAction : EntityActionBase
     {
-        [SerializeField] private LocationValue _targetLocation;
+        [SerializeField] private string _targetLocation;
         
         public override bool CanPerform()
         {

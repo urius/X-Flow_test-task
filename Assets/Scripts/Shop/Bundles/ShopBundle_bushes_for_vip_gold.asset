@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efa4f730772404396e68a3c7cb16fdf, type: 3}
+  m_Name: ShopBundle_bushes_for_vip_gold
+  m_EditorClassIdentifier: 
+  _title: "\u0412 \u043A\u0443\u0441\u0442\u044B \u0437\u0430 \u0437\u043E\u043B\u043E\u0442\u043E
+    \u0438 \u0432\u0438\u043F"
+  _actions:
+  - {fileID: 11400000, guid: e1b4d72089f424819b72e80361417431, type: 2}
+  - {fileID: 11400000, guid: 67e447ea51ff14306888aa35d6dbbc3a, type: 2}
+  - {fileID: 11400000, guid: 9544ef26c55e6450aa29bc7e9f7e7815, type: 2}

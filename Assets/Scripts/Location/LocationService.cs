@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Core;
 
 namespace Location
@@ -7,47 +5,25 @@ namespace Location
     internal class LocationService
     {
         public static readonly LocationService Instance = new();
-        private static IReadOnlyList<LocationValue> LocationValues => (LocationValue[])Enum.GetValues(typeof(LocationValue));
-
-        public bool CanChangeLocation(int deltaAmount)
-        {
-            var newIndex = GetNextLocationIndex(deltaAmount);
-
-            return newIndex < LocationValues.Count && newIndex > 0;
-        }
-
-        public void ChangeLocation(int deltaAmount)
-        {
-            if (CanChangeLocation(deltaAmount))
-            {
-                var newIndex = GetNextLocationIndex(deltaAmount);
-                var newLocation = LocationValues[newIndex];
-
-                PlayerData.Instance.SetEntityValue<LocationEntityInfo, LocationValue>(LocationEntityInfo.EntityKey, newLocation);
-            }
-        }
         
-        public bool CanChangeLocationTo(LocationValue targetLocation)
+        public bool CanChangeLocationTo(string targetLocation)
         {
-            var currentLocation = PlayerData.Instance.GetEntityValue<LocationEntityInfo, LocationValue>();
+            var currentLocation = PlayerData.Instance.GetEntityValue<LocationEntityInfo, string>();
 
             return currentLocation != targetLocation;
         }
         
-        public void ChangeLocationTo(LocationValue newLocation)
+        public void ChangeLocationTo(string newLocation)
         {
             if (CanChangeLocationTo(newLocation))
             {
-                PlayerData.Instance.SetEntityValue<LocationEntityInfo, LocationValue>(LocationEntityInfo.EntityKey, newLocation);
+                PlayerData.Instance.SetEntityValue<LocationEntityInfo, string>(LocationEntityInfo.EntityKey, newLocation);
             }
         }
-
-        private int GetNextLocationIndex(int deltaIndex)
+        
+        public string GetCurrentLocation()
         {
-            var currentLocation = PlayerData.Instance.GetEntityValue<LocationEntityInfo, LocationValue>();
-            var newIndex = (int)currentLocation + deltaIndex;
-            
-            return newIndex;
+            return PlayerData.Instance.GetEntityValue<LocationEntityInfo, string>();
         }
     }
 }

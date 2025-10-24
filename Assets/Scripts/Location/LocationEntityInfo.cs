@@ -5,19 +5,18 @@ using UnityEngine;
 namespace Location
 {
     [CreateAssetMenu(fileName = "LocationEntityInfo", menuName = "ScriptableObject/EntityInfo/LocationEntityInfo")]
-    internal class LocationEntityInfo : EntityInfoBase<LocationValue>
+    internal class LocationEntityInfo : EntityInfoBase<string>
     {
         public const string EntityKey = "Location";
 
-        [SerializeField] private LocationData[] _locationDataList;
-        
         public override string Key => EntityKey;
         
         public override string GetStringValue()
         {
-            var locationValue = PlayerData.Instance.GetEntityValue<LocationEntityInfo, LocationValue>();
-
-            return _locationDataList.FirstOrDefault(d => d.Location == locationValue)?.LocationName ?? locationValue.ToString();
+            const string unknownLocation = "?";
+            
+            var locationValue = PlayerData.Instance.GetEntityValue<LocationEntityInfo, string>();
+            return locationValue ?? unknownLocation;
         }
     }
 }

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf4df6cc9044adaaeb7925d35073078, type: 3}
-  m_Name: NextLocationAction
+  m_Script: {fileID: 11500000, guid: 34c537c03f1c4bdca99d876db29379c8, type: 3}
+  m_Name: ChangeLocationToBushes
   m_EditorClassIdentifier: 
   EntityInfo: {fileID: 11400000, guid: 56e81a80f9c9448b68844a6fc5962145, type: 2}
-  _deltaIndex: 1
+  _targetLocation: "\u041A\u0443\u0441\u0442\u044B"
