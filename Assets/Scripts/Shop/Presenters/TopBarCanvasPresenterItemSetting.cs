@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Shop.Presenters
 {
     [Serializable]
-    public class TopBarCanvasPresenterItemSetting
+    internal class TopBarCanvasPresenterItemSetting
     {
         [SerializeField] private EntityInfoBase _displayEntityInfo;
         [SerializeField] private EntityActionBase _buttonAction;

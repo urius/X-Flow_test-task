@@ -16,6 +16,16 @@ namespace Shop.Presenters
             PresentItems();
         }
 
+        private void OnDestroy()
+        {
+            foreach (var resourceItemPresenter in _resourceItemPresenters)
+            {
+                resourceItemPresenter.Dispose();
+            }
+
+            _resourceItemPresenters.Clear();
+        }
+
         private void PresentItems()
         {
             foreach (var itemSetting in _items)

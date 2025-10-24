@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShopScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/ViewBundleScene.unity
+    guid: 022876ae3f1ff4e13add4d21892163c1
   m_configObjects: {}
