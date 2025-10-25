@@ -31,7 +31,7 @@ namespace Gold
 
         public int GetCurrentGold()
         {
-            return PlayerData.Instance.GetEntityValue(_entityInfo, defaultValue: 0);
+            return PlayerData.Instance.GetEntityValue<GoldEntityInfo, int>(_entityInfo);
         }
     }
 }

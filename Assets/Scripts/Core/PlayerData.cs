@@ -23,18 +23,15 @@ namespace Core
             _valueHoldersByEntityKey[entity.Key] = valueHolder;
         }
 
-        public TValue GetEntityValue<TEntity, TValue>(TEntity entity, TValue defaultValue = default) 
+        public TValue GetEntityValue<TEntity, TValue>(TEntity entity) 
             where TEntity : EntityInfoBase<TValue>
         {
             if (_valueHoldersByEntityKey.TryGetValue(entity.Key, out var valueHolder))
             {
                 return ((ValueHolder<TValue>)valueHolder).Value;
             }
-
-            valueHolder = new ValueHolder<TValue>(defaultValue);
-            _valueHoldersByEntityKey[entity.Key] = valueHolder;
                 
-            return defaultValue;
+            return default;
         }
         
         public void SetEntityValue<TEntity, TValue>(TEntity entity, TValue value) 
