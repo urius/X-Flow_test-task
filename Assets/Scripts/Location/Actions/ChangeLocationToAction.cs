@@ -10,12 +10,12 @@ namespace Location.Actions
         
         public override bool CanPerform()
         {
-            return LocationService.Instance.CanChangeLocationTo(EntityInfo, _targetLocation);
+            return LocationService.Instance.CanChangeLocationTo(_targetLocation);
         }
 
         public override void Perform()
         {
-            LocationService.Instance.ChangeLocationTo(EntityInfo, _targetLocation);
+            LocationService.Instance.ChangeLocationTo(_targetLocation);
         }
     }
 }

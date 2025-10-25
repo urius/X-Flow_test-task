@@ -7,24 +7,31 @@ namespace Gold
         public static readonly GoldService Instance = new();
         
         private readonly PlayerData _playerData = PlayerData.Instance;
+        
+        private GoldEntityInfo _entityInfo;
 
-        public bool CanChangeGold(GoldEntityInfo entityInfo, int deltaAmount)
+        public void Initialize(GoldEntityInfo goldEntity)
         {
-            return GetCurrentGold(entityInfo) + deltaAmount >= 0;
+            _entityInfo = goldEntity;
         }
 
-        public void ChangeGold(GoldEntityInfo entityInfo, int deltaAmount)
+        public bool CanChangeGold(int deltaAmount)
         {
-            if (CanChangeGold(entityInfo, deltaAmount))
+            return GetCurrentGold() + deltaAmount >= 0;
+        }
+
+        public void ChangeGold(int deltaAmount)
+        {
+            if (CanChangeGold(deltaAmount))
             {
-                var currentValue = GetCurrentGold(entityInfo);
-                _playerData.SetEntityValue(entityInfo, currentValue + deltaAmount);
+                var currentValue = GetCurrentGold();
+                _playerData.SetEntityValue(_entityInfo, currentValue + deltaAmount);
             }
         }
 
-        public int GetCurrentGold(GoldEntityInfo entityInfo)
+        public int GetCurrentGold()
         {
-            return PlayerData.Instance.GetEntityValue(entityInfo, defaultValue: 0);
+            return PlayerData.Instance.GetEntityValue(_entityInfo, defaultValue: 0);
         }
     }
 }

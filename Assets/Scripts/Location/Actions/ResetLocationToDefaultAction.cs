@@ -8,12 +8,12 @@ namespace Location.Actions
     {
         public override bool CanPerform()
         {
-            return LocationService.Instance.CanResetToDefaultLocation(EntityInfo);
+            return LocationService.Instance.CanResetToDefaultLocation();
         }
 
         public override void Perform()
         {
-            LocationService.Instance.ResetToDefaultLocation(EntityInfo);
+            LocationService.Instance.ResetToDefaultLocation();
         }
     }
 }

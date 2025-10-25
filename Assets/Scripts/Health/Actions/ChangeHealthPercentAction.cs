@@ -10,12 +10,12 @@ namespace Health.Actions
         
         public override bool CanPerform()
         {
-            return HealthService.Instance.CanChangeHealthPercent(EntityInfo, _deltaPercent);
+            return HealthService.Instance.CanChangeHealthPercent(_deltaPercent);
         }
 
         public override void Perform()
         {
-            HealthService.Instance.ChangeHealthPercent(EntityInfo, _deltaPercent);
+            HealthService.Instance.ChangeHealthPercent(_deltaPercent);
         }
     }
 }

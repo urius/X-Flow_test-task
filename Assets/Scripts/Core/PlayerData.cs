@@ -10,7 +10,19 @@ namespace Core
         public static readonly PlayerData Instance = new();
         
         private readonly Dictionary<string, ValueHolder> _valueHoldersByEntityKey = new();
-        
+
+        public void RegisterEntity<TEntity, TValue>(TEntity entity, TValue defaultValue = default)
+            where TEntity : EntityInfoBase<TValue>
+        {
+            if (_valueHoldersByEntityKey.TryGetValue(entity.Key, out var valueHolder))
+            {
+                return;
+            }
+
+            valueHolder = new ValueHolder<TValue>(defaultValue);
+            _valueHoldersByEntityKey[entity.Key] = valueHolder;
+        }
+
         public TValue GetEntityValue<TEntity, TValue>(TEntity entity, TValue defaultValue = default) 
             where TEntity : EntityInfoBase<TValue>
         {

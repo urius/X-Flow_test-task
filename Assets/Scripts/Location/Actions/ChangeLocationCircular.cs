@@ -13,7 +13,7 @@ namespace Location.Actions
         {
             if (_locationsList is { Length: > 0 })
             {
-                var currentLocation = LocationService.Instance.GetCurrentLocation(EntityInfo);
+                var currentLocation = LocationService.Instance.GetCurrentLocation();
                 return _locationsList.Length != 1 || _locationsList[0] != currentLocation;
             }
 
@@ -24,16 +24,16 @@ namespace Location.Actions
         {
             if (CanPerform())
             {
-                var currentLocation = LocationService.Instance.GetCurrentLocation(EntityInfo);
+                var currentLocation = LocationService.Instance.GetCurrentLocation();
                 var currentLocationIndex = Array.IndexOf(_locationsList, currentLocation);
                 
                 if (currentLocationIndex < 0 || currentLocationIndex >= _locationsList.Length - 1)
                 {
-                    LocationService.Instance.ChangeLocationTo(EntityInfo, _locationsList[0]);
+                    LocationService.Instance.ChangeLocationTo(_locationsList[0]);
                 }
                 else
                 {
-                    LocationService.Instance.ChangeLocationTo(EntityInfo, _locationsList[currentLocationIndex + 1]);
+                    LocationService.Instance.ChangeLocationTo(_locationsList[currentLocationIndex + 1]);
                 }
             }
         }

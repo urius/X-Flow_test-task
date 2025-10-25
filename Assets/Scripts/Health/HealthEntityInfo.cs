@@ -12,7 +12,7 @@ namespace Health
         
         public override string GetStringValue()
         {
-            return HealthService.Instance.GetCurrentHp(this).ToString();
+            return HealthService.Instance.GetCurrentHp().ToString();
         }
     }
 }

@@ -5,39 +5,47 @@ namespace Location
     internal class LocationService
     {
         public static readonly LocationService Instance = new();
+        
+        private readonly PlayerData _playerData = PlayerData.Instance;
+        
+        private LocationEntityInfo _entityInfo;
 
-        private const string DefaultLocation = "Лес";
 
-        public bool CanChangeLocationTo(LocationEntityInfo entityInfo, string targetLocation)
+        public void Initialize(LocationEntityInfo locationEntity)
         {
-            var currentLocation = PlayerData.Instance.GetEntityValue<LocationEntityInfo, string>(entityInfo);
+            _entityInfo = locationEntity;
+        }
+
+        public bool CanChangeLocationTo(string targetLocation)
+        {
+            var currentLocation = GetCurrentLocation();
 
             return currentLocation != targetLocation;
         }
 
-        public void ChangeLocationTo(LocationEntityInfo entityInfo, string newLocation)
+        public void ChangeLocationTo(string newLocation)
         {
-            if (CanChangeLocationTo(entityInfo, newLocation))
+            if (CanChangeLocationTo(newLocation))
             {
-                PlayerData.Instance.SetEntityValue(entityInfo, newLocation);
+                _playerData.SetEntityValue(_entityInfo, newLocation);
             }
         }
 
-        public string GetCurrentLocation(LocationEntityInfo entityInfo)
+        public string GetCurrentLocation()
         {
-            return PlayerData.Instance.GetEntityValue(entityInfo, DefaultLocation);
+            return PlayerData.Instance.GetEntityValue<LocationEntityInfo, string>(_entityInfo);
         }
 
-        public bool CanResetToDefaultLocation(LocationEntityInfo entityInfo)
+        public bool CanResetToDefaultLocation()
         {
-            return GetCurrentLocation(entityInfo) != DefaultLocation;
+            return GetCurrentLocation() != LocationEntityInfo.DefaultLocation;
         }
 
-        public void ResetToDefaultLocation(LocationEntityInfo entityInfo)
+        public void ResetToDefaultLocation()
         {
-            if (CanResetToDefaultLocation(entityInfo))
+            if (CanResetToDefaultLocation())
             {
-                PlayerData.Instance.SetEntityValue(entityInfo, DefaultLocation);
+                _playerData.SetEntityValue(_entityInfo, LocationEntityInfo.DefaultLocation);
             }
         }
     }
